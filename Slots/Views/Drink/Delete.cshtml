@@ -1,0 +1,28 @@
+﻿@model Slots.Models.Domain.Drink
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<form asp-action="Delete" enctype="multipart/form-data" id="formDeleteDrink">
+    <input asp-for="Id" hidden />
+    <div asp-validation-summary="All" style="font-size:23px; font-family:Impact, serif" class="text-danger text-center"></div>
+    <div class="row">
+        <div class="form-group col-md-4">
+           Название
+            <p class="card-text">@Model.Name</p>
+        </div>
+        <div class="form-group col-md-4">
+            Количество
+            <p class="card-text">@Model.Quantity</p>
+        </div>
+        <div class="form-group col-md-4">
+            Цена
+            <p class="card-text">@Model.Price</p>
+        </div>
+    </div>
+    <p></p>
+   
+    <button class="btn btn-primary">Удалить</button>
+</form>
+

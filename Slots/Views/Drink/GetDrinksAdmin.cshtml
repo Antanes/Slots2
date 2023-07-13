@@ -1,0 +1,211 @@
+﻿@using Slots.Models.ViewModel
+@using Slots.Models.Domain
+@model IEnumerable<Slots.Models.Domain.Drink>
+
+
+@{
+    ViewBag.Title = "DrinkShop";
+    Layout = "_Layout";
+}
+
+@{
+    var cardStyle = "col-sm-4";
+
+}
+<style>
+    .card-buttons-group {
+        text-align: right;
+        padding: 10px;
+    }
+</style>
+
+
+@if (Machine.Login == true)
+{
+    <input type="checkbox" class="btn-check" id="aa" autocomplete="off" onclick="blockone()">
+    <label class="btn btn-outline-danger" for="aa">1</label>
+
+    <input type="checkbox" class="btn-check" id="ss" autocomplete="off" onclick="blocktwo()">
+    <label class="btn btn-outline-danger" for="ss">2</label>
+
+    <input type="checkbox" class="btn-check" id="zz" autocomplete="off" onclick="blockfive()">
+    <label class="btn btn-outline-danger" for="zz">5</label>
+
+    <input type="checkbox" class="btn-check" id="xx" autocomplete="off" onclick="blockten()">
+    <label class="btn btn-outline-danger" for="xx">10</label>
+
+
+    <button class='btn btn-success' id='addDrinkId'>Добавить</button>
+
+
+    <div style="padding: 10px;"></div>
+    @if (Model == null)
+    {
+        <div class="card col-md-12">
+            <div class="row g-0">
+
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Торговый автомат пуст</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var drink in Model)
+            {
+                <div class="row row-cols-1 @cardStyle text-center">
+                    <div class="col" style="padding: 50px;">
+                        <div class="card">
+                            <center><img src="data:image/jpeg;base64,@Convert.ToBase64String(drink?.Avatar ?? Array.Empty<byte>())" alt="@drink.Name" style="width:150px;height:150px"></center>
+                            <div class="card-body">
+                                <h5 class="card-title">Название: @drink.Name</h5>
+                                <p class="card-text">Количество: @drink.Quantity</p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Стоимость: @drink.Price ₽</li>
+
+                            </ul>
+                            <div class="card-body">
+
+                                <button class="btn btn-success" onclick="openModal({ url: '/Drink/Save', data: '@drink.Id'}) "
+                                        data-toggle="ajax-modal" data-target="Modal">
+                                    Изменить
+                                </button>
+                            <button class="btn btn-success" onclick="openModal({ url: '/Drink/Delete', data: '@drink.Id'}) "
+                                    data-toggle="ajax-modal" data-target="Modal">
+                                Удалить
+                            </button>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+
+@*}*@
+
+@section pageScripts {
+
+    <script>
+        function blockone() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+
+            xhttp.open("GET", "/Drink/BlockOne", true);
+            xhttp.send();
+        }
+    </script>
+
+    <script>
+        function blocktwo() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+            xhttp.open("GET", "/Drink/BlockTwo", true);
+            xhttp.send();
+        }
+    </script>
+
+    <script>
+        function blockfive() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+            xhttp.open("GET", "/Drink/BlockFive", true);
+            xhttp.send();
+        }
+    </script>
+
+    <script>
+        function blockten() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                }
+            };
+            xhttp.open("GET", "/Drink/BlockTen", true);
+            xhttp.send();
+        }
+    </script>
+
+    <script src="~/js/modal.js"></script>
+    <script>
+        let modal = $('#modalWhButtons');
+
+
+
+        $('#addDrinkId').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: '/Drink/Save',
+                success: function (response) {
+                    $('.modal-dialog').removeClass("modal-lg");
+                    modal.find(".modal-body").html(response);
+                    modal.modal('show')
+
+                },
+
+
+                failure: function () {
+                    modal.modal('hide')
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+        });
+
+    </script>
+    <script src="~/js/modal.js"></script>
+    <script>
+        let modal = $('#modalWhButtons');
+
+
+
+        $('#delDrinkId').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'GET',
+                url: '/Drink/Delete,
+                success: function (response) {
+                    $('.modal-dialog').removeClass("modal-lg");
+                    modal.find(".modal-body").html(response);
+                    modal.modal('show')
+
+                },
+
+
+                failure: function () {
+                    modal.modal('hide')
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+        });
+
+    </script>
+}
+}

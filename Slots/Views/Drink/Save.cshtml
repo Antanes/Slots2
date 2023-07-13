@@ -1,0 +1,71 @@
+﻿@model Slots.Models.ViewModel.DrinkViewModel
+@{
+    var textTitle = Model?.Id == 0 ? "Изменение данных" : "Добавление данных";
+}
+@if (Model == null)
+{
+    <form asp-action="Save" enctype="multipart/form-data" id="formSaveDrink">
+        <input asp-for="Id" hidden />
+        <div asp-validation-summary="All" style="font-size:23px; font-family:Impact, serif" class="text-danger text-center"></div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Name" class="col-form-label"></label>
+                <input type="text" class="form-control" asp-for="@Model.Name">
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Quantity" class="col-form-label"></label>
+                <input class="form-control" min="0" asp-for="@Model.Quantity" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Price" class="col-form-label"></label>
+                <input class="form-control" min="0" asp-for="@Model.Price" />
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label class="col-form-label">Изображение</label>
+            <input asp-for="@Model.Avatar" class="form-control" type="file">
+        </div>
+        <p></p>
+        <button class="btn btn-primary">Отправить</button>
+    </form>
+}
+else
+{
+    <form asp-action="Save" enctype="multipart/form-data" id="formSaveDrink">
+        <input asp-for="Id" hidden />
+        <input asp-for="Avatar" hidden />
+        <input asp-for="Name" hidden />
+        <div asp-validation-summary="All" style="font-size:23px; font-family:Impact, serif" class="text-danger text-center"></div>
+        <div class="row">
+           
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Quantity" class="col-form-label"></label>
+                <input class="form-control" min="0" asp-for="@Model.Quantity" />
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Price" class="col-form-label"></label>
+                <input class="form-control" min="0" asp-for="@Model.Price" />
+            </div>
+        </div>
+
+
+
+
+        <p></p>
+
+        <button class="btn btn-primary">Отправить</button>
+    </form>
+}
+
+
+<style>
+    label {
+        color: black;
+    }
+</style>
+@section pageScripts {
+
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
