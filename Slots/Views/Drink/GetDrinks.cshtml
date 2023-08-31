@@ -1,5 +1,6 @@
 ﻿@using Slots.Models.Domain
-@using Slots.Models.ViewModel
+@using Slots.Data.Static
+@using Slots.Data.ViewModel
 @model IEnumerable<Slots.Models.Domain.Drink>
 
 
@@ -57,10 +58,10 @@
                     <th>Сдача</th>
                     <td>@Machine.Change</td>
                     <th>Количество</th>
-                    <td>@Machine.Coin10</td>
-                    <td>@Machine.Coin5</td>
-                    <td>@Machine.Coin2</td>
-                    <td>@Machine.Coin1</td>
+                    <td>@Machine.Coin10quantity</td>
+                    <td>@Machine.Coin5quantity</td>
+                    <td>@Machine.Coin2quantity</td>
+                    <td>@Machine.Coin1quantity</td>
                 </tr>
 
             </tbody>

@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Slots.Models.Domain;
 
-namespace Slots.Models
+namespace Slots.Data
 {
     public class ApplicationDbContext : DbContext
     {
-      
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -17,7 +17,7 @@ namespace Slots.Models
 
 
 
-       
-        
+
+
     }
 }

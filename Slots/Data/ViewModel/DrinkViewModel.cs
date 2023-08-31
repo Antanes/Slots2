@@ -1,10 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Slots.Models.ViewModel
+namespace Slots.Data.ViewModel
 {
     public class DrinkViewModel
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Название")]
         [Required(ErrorMessage = "Введите имя")]

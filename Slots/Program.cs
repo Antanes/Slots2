@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Slots.Models;
-
+using Slots.Data;
+using Slots.Data.Services;
 
 namespace Slots
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -17,9 +18,11 @@ namespace Slots
 
             var connection = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connection));
-                      
-                        
+            options.UseSqlServer(connection));
+
+
+            builder.Services.AddScoped<IDrinkService, DrinkService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,5 +1,6 @@
-﻿@using Slots.Models.ViewModel
+﻿@using Slots.Data.ViewModel
 @using Slots.Models.Domain
+@using Slots.Data.Static
 @model IEnumerable<Slots.Models.Domain.Drink>
 
 
@@ -94,7 +95,7 @@
         </div>
     }
 
-@*}*@
+}
 
 @section pageScripts {
 
@@ -207,5 +208,4 @@
         });
 
     </script>
-}
 }
